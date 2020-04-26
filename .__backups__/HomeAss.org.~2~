@@ -1,0 +1,39 @@
+Archivo que recoge los avances y fracasos de lproyecto HomeASS para la automatización de la piña.
+
+
+* IDEAS GENERALES
+	- Se va a utilizar la Raspberry má antigua como alamacén de la base
+    de datos SQL y la nueva como gestión del sistema (telegram, web,
+    automatización, etc)
+
+	- Se van a utilizar bombillas Wifi para el control de la iluminación
+
+	- Se utilizarán medidores de corriente para ver como influye el
+    consumo enerǵetico en la introducción de la automatización. Se
+    buscarán sensores de corrientes y se conectarán a Arduino o
+    ESP8266 para enviar datos a RPi
+
+		+ _GOAL1_: Iluminación de la lámpara de salón
+
+#+BEGIN_SRC
+       _Cálculos consumo Rpi_
+
+			 5V*0.2A=10W->10*24h*365d
+#+END_SRC
+* LOGBOOK
+** 2020-01-06
+	 Se instala la RPi antigua (192.168.1.200) y se instala en ella la base de datos
+	 MAriaDB. Se dan derechos de administrador al usuario
+	 /pblast@pwdAdminMariadb/
+
+	 Además e crea la base de datos /home/ sin de momento ninguna tabla
+
+	 Se habilita el acceso a la base de datos desde la red editando en
+	 el fichero /etc/mysql/mariadb.conf.d/50-server.cnf la linea que
+	 contenga el siguiente texto:
+
+	     *bind-address=127.0.0.1*
+
+	 Parece que la rasp nueva no consigue arrancar. Hay que conectarla
+	 por HDMI y ver cual es el problema. Se ha probado con dos cables de
+	 red, dos fuentes de alimentación y dos tarjetas SD.

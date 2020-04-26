@@ -1,0 +1,93 @@
+Archivo que recoge los avances y fracasos de lproyecto HomeASS para la automatización de la piña.
+
+
+* IDEAS GENERALES
+	- Se va a utilizar la Raspberry má antigua como alamacén de la base
+    de datos SQL y la nueva como gestión del sistema (telegram, web,
+    automatización, etc)
+
+	- Se van a utilizar bombillas Wifi para el control de la iluminación
+
+	- Se utilizarán medidores de corriente para ver como influye el
+    consumo enerǵetico en la introducción de la automatización. Se
+    buscarán sensores de corrientes y se conectarán a Arduino o
+    ESP8266 para enviar datos a RPi
+
+		+ _GOAL1_: Iluminación de la lámpara de salón
+
+#+BEGIN_SRC
+       _Cálculos consumo Rpi_
+
+			 5V*0.2A=10W->10*24h*365d
+#+END_SRC
+* LOGBOOK
+** 2020-01-06
+	 Se instala la RPi antigua (192.168.1.200) y se instala en ella la base de datos
+	 MAriaDB. Se dan derechos de administrador al usuario
+	 /pblast@pwdAdminMariadb/
+
+	 Además e crea la base de datos /home/ sin de momento ninguna tabla
+
+	 Se habilita el acceso a la base de datos desde la red editando en
+	 el fichero /etc/mysql/mariadb.conf.d/50-server.cnf la linea que
+	 contenga el siguiente texto:
+
+	     *bind-address=127.0.0.1*
+
+	 Parece que la rasp nueva no consigue arrancar. Hay que conectarla
+	 por HDMI y ver cual es el problema. Se ha probado con dos cables de
+	 red, dos fuentes de alimentación y dos tarjetas SD.
+
+** 2020-04-15
+	 Se vuelve a retomarel proyecto.
+	 Se reinstala la raspberry bi más antigua desde 0 la más nueva
+	 parace que no arranca.
+
+	 Se va a instalar una base de datos SQL en la rapsberry pi y se va a
+	 instalar el cliente de telegram. Deberá gestionar tanto a Josepin
+	 como a telvina.
+
+** 2020-04-19
+	 Se crea una estructura de carpetas para trabajar con librerías dinamicas.
+	 Se creara uan carpeta lib-dev en el que se almacenaran el código de las librerías en las que se trabaja. con su propio Makefile
+	 el Makefile compilará la librería y la movera al dierctorio *lib* donde moverá también el header a *lib/inc*
+
+** 2020-04-23
+	 Se instala el servidor de base de datos MAriaDB en las raspberry (Mariadb-server)
+
+* DATOS
+	IP: 192.168.1.200
+	Modelo: Raspberry Pi A
+
+	_USUARIO NORMAL_
+	Usuario: Josepin
+	Password: Telvin4
+
+	_USUARIO ADMIN_
+	Usuario: Telvina
+	Password: Josep1n
+
+TELVINA
+
+    TOKEN - >219926068:AAGHZ28uoTdZlYcyjko8E5SVTHFERMi_m7w
+    id -> 219926068
+
+
+PIN
+
+    TOKEN -> 219557375:AAG1H1riVMlfzsQT1aZXyWJtWSiwXRzUgtw
+    id -> 219557375
+
+
+USUARIOS
+    PAblo -> 151153975
+    Zelia -> 25404277
+	Se elimina el usuario por defecto
+
+
+MARIADB
+   LA contraseña de root es /*pwdAdminDB2020*/
+    Se crea la base de datos HomeAss
+		En ella la tabla BOTS (ID,Nombre,Token,Admin)
+		Se da acceso al usario Telvina en el servidor con el password
+   /*pwdAdminDBHomeAss2020*/
